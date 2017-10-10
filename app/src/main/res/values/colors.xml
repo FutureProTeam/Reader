@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="textBookCoverTitle">#666666</color>
+    <color name="textPopMenu">#333333</color>
 </resources>

@@ -2,8 +2,13 @@ package com.futureproteam.reader.activity;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupWindow;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.futureproteam.reader.R;
 import com.futureproteam.reader.adapter.BookcaseAdapter;
 import com.futureproteam.reader.base.BaseActivity;
@@ -15,9 +20,10 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
- * 书柜
+ * 书架
  */
 public class BookcaseActivity extends BaseActivity {
 
@@ -27,6 +33,7 @@ public class BookcaseActivity extends BaseActivity {
     RecyclerView recyclerView;
 
     private BookcaseAdapter adapter;
+    private PopupWindow popUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +46,7 @@ public class BookcaseActivity extends BaseActivity {
     private void init() {
         ButterKnife.bind(this);
 
+        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new GridLayoutManager(this, COLUMN_NUM));
         int spanCount = 3; // 3 columns
         int spacing = 50; // 50px
@@ -55,7 +63,23 @@ public class BookcaseActivity extends BaseActivity {
         books.add(new BookBo("天才在左疯子在右"));
         books.add(new BookBo("天才在左疯子在右"));
         books.add(new BookBo("天才在左疯子在右"));
-        books.add(new BookBo("天才在左疯子在右"));
+        books.add(new BookBo("天才在左，疯子在右   作者.txt"));
         adapter.setData(books);
+
     }
+
+    @OnClick(R.id.img_menu)
+    public void onMenuClicked(View view){
+        PopupMenu popup = new PopupMenu(BookcaseActivity.this, view);
+        popup.getMenuInflater().inflate(R.menu.pop_up, popup.getMenu());
+
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                ToastUtils.showLong("You Clicked : " + item.getTitle());
+                return true;
+            }
+        });
+        popup.show();//showing popup menu
+    }
+
 }
