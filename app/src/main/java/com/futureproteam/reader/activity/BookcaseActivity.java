@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupWindow;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.futureproteam.reader.R;
 import com.futureproteam.reader.adapter.BookcaseAdapter;
 import com.futureproteam.reader.base.BaseActivity;
@@ -75,7 +74,13 @@ public class BookcaseActivity extends BaseActivity {
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
             public boolean onMenuItemClick(MenuItem item) {
-                ToastUtils.showLong("You Clicked : " + item.getTitle());
+                switch (item.getItemId()){
+                    case R.id.local_import:
+                        ImportLocalBookActivity.start(BookcaseActivity.this);
+                        break;
+                    default:
+                        break;
+                }
                 return true;
             }
         });
