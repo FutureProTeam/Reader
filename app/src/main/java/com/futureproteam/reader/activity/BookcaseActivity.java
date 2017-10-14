@@ -11,6 +11,7 @@ import android.widget.PopupWindow;
 import com.futureproteam.reader.R;
 import com.futureproteam.reader.adapter.BookcaseAdapter;
 import com.futureproteam.reader.base.BaseActivity;
+import com.futureproteam.reader.base.BaseApplication;
 import com.futureproteam.reader.modle.BookBo;
 import com.futureproteam.reader.view.GridSpacingItemDecoration;
 
@@ -38,6 +39,8 @@ public class BookcaseActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BaseApplication.from(this).getAppComponent().inject(this);
 
         init();
     }

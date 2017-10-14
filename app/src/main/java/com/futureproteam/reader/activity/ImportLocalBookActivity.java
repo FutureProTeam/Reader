@@ -42,7 +42,7 @@ public class ImportLocalBookActivity extends BaseActivity {
 
         fragments = new ArrayList<>();
         fragments.add(new IntelligentImportFragment());
-        adapterViewPager = new ImportFragmentPageAdapter(getSupportFragmentManager(), fragments);
+        adapterViewPager = new ImportFragmentPageAdapter(getApplicationContext(), getSupportFragmentManager(), fragments);
         viewPager.setAdapter(adapterViewPager);
 
 

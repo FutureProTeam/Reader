@@ -2,9 +2,13 @@ package com.futureproteam.reader.base;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import com.blankj.utilcode.util.Utils;
 import com.facebook.stetho.Stetho;
+import com.futureproteam.reader.dagger.components.AppComponent;
+import com.futureproteam.reader.dagger.components.DaggerAppComponent;
+import com.futureproteam.reader.dagger.modules.AppModule;
 import com.morgoo.droidplugin.PluginHelper;
 import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
 
@@ -15,7 +19,9 @@ import timber.log.Timber;
  * Created by ding-syi on 2017/9/28.
  */
 
-public class BaeApplication extends Application {
+public class BaseApplication extends Application {
+
+    AppComponent appComponent;
 
     @Override
     public void onCreate() {
@@ -37,6 +43,10 @@ public class BaeApplication extends Application {
 
         //init 工具库module
         Utils.init(this);
+
+        appComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
     }
 
     @Override
@@ -45,5 +55,13 @@ public class BaeApplication extends Application {
         //init droidplugin
         PluginHelper.getInstance().applicationAttachBaseContext(base);
         super.attachBaseContext(base);
+    }
+
+    public AppComponent getAppComponent(){
+        return appComponent;
+    }
+
+    public static BaseApplication from(@NonNull Context context){
+        return (BaseApplication) context.getApplicationContext();
     }
 }
