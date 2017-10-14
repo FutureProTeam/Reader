@@ -10,6 +10,7 @@ import android.widget.PopupWindow;
 
 import com.futureproteam.reader.R;
 import com.futureproteam.reader.adapter.BookcaseAdapter;
+import com.futureproteam.reader.andserver.HttpServer;
 import com.futureproteam.reader.base.BaseActivity;
 import com.futureproteam.reader.base.BaseApplication;
 import com.futureproteam.reader.modle.BookBo;
@@ -47,7 +48,7 @@ public class BookcaseActivity extends BaseActivity {
 
     private void init() {
         ButterKnife.bind(this);
-
+        new HttpServer(this);
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new GridLayoutManager(this, COLUMN_NUM));
         int spanCount = 3; // 3 columns

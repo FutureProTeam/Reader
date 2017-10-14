@@ -6,21 +6,31 @@ package com.futureproteam.reader.modle;
  */
 
 public class BookBo {
-    private String title;
 
+    private String name;
+
+    private String size;
     public BookBo(){
 
     }
 
     public BookBo(String title) {
-        this.title = title;
+        this.name = title;
     }
 
     public String getTitle() {
-        return title;
+        return name;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        this.name = title;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
     }
 }
